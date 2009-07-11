@@ -1,16 +1,18 @@
 \documentclass{beamer}
 
-\usepackage{beamerthemeBerkeley}
+\usepackage{beamerthemeCopenhagen}
+%\usepackage{beamerthemeBerkeley}
 %\usepackage{beamercolorthemeseahorse}
+%\usepackage{color}
 \usepackage{graphicx}
 \usepackage[brazil]{babel}
 \usepackage[latin1]{inputenc}
 
-\logo{\includegraphics[scale=0.2]{logo.png}}
+%\logo{\includegraphics[scale=0.2]{logo.png}}
 %\logo{teste}
 
-\title{An\'alise do \textit{sprint}}
-\author{Ricardo Yamamoto Abe}
+\title{Pendências \textit{Infra} e \textit{Dev}}
+\author{Lindolfo Rodrigues}
 \date{}
 
 \begin{document}
@@ -23,22 +25,70 @@
 %\tableofcontents
 %\end{frame}
 
-\section{Introdu\c{c}\~ao}
+\section{Introdução}
 
 \frame 
 {
-  \frametitle{Objetivos do \textit{sprint}}
+  \frametitle{Objetivo}
 
   \begin{itemize}[<+->]
-  \item Criar uma biblioteca de alto desempenho para Perl a partir do buscador
-    original, utilizando \textit{Inline C}.
+  \item Mostrar o que já foi feito em \textit{Infra} e \textit{Dev} 
     
-  \item Gerar a base de bairros lim\'itrofes a partir do cadastro
-  geral e da base do DNE, utilizando a nova biblioteca.
+  \item ...e o que ainda precisa ser feito
+  \item Cores 
+  \begin{itemize}[<+->]
+    \item Preto, o que já foi feito
+    \item \textcolor{red}{Vermelho}, o que ainda precisa ser feito
+  \end{itemize}
   \end{itemize}
 }
 
-\section{Cria\c{c}\~ao da biblioteca}
+\section{Infra DND}
+
+\frame
+{
+  \frametitle{Repositório}
+  \begin{itemize}[<+->]
+  \item SVN com problemas
+  \begin{itemize}[<+->]
+  \item svn update, não funcionava
+  \item Site e Backoffice, totalmente desincronizado com o repositório
+  \item Não era feito Branch, não era feito tag... 
+  \end{itemize}
+  \item Git!
+  \begin{itemize}[<+->]
+  \item Distribuído
+  \item Branchs mais faceis
+  \item Uso de tags para o site
+  \item gitweb - http://192.168.0.178/gitweb/
+  \item Site sincronizado
+  \item \textcolor{red}{Backoffice ainda não}
+  \end{itemize}
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Samba, Domínio, Backup}
+  \begin{itemize}[<+->]
+  \item \textcolor{red}{Samba para controlar os usuários}
+  \item \textcolor{red}{Domínio - centralização de usuários}
+  \item \textcolor{red}{Um servidor de arquivos, backup somente desse
+  servidor}
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Suporte remoto}
+  \begin{itemize}[<+->]
+  \item \textcolor{red}{Bip ( já cotado, e com custo benefício bom )}
+  \item \textcolor{red}{Modem 3g para acesso}
+  \item \textcolor{red}{Escala de suporte}
+  \end{itemize}
+}
+
+\section{Infra DC}
 
 \frame
 {
@@ -46,7 +96,7 @@
 
   \begin{figure}[h]
     \centering
-    \includegraphics [scale=0.35,]{antigo.png}
+    \includegraphics [scale=0.22]{antiga.jpg}
   \end{figure}
 }
 
@@ -56,66 +106,167 @@
 
   \begin{figure}[h]
     \centering
-    \includegraphics [scale=0.33]{novo.png}
-  \end{figure}
-}
-
-\section{Processamento da base de bairros lim\'itrofes}
-
-\frame
-{
-  \frametitle{Comparativo de desempenho na gera\c{c}\~ao da base de bairros lim\'itrofes -- estrutura original}
-
-  \begin{center}
-    \begin{tabular}{c|c}
-      \hline
-      N\'umero de processos & Desempenho\\
-      \hline
-      1 & 250 linhas/s\\
-      2 & 416 linhas/s\\
-      3 & 454 linhas/s\\
-      4 & 481 linhas/s\\
-      5 & 531 linhas/s\\
-      \hline      
-    \end{tabular}
-  \end{center}
-}
-
-\frame
-{
-  \frametitle{Comparativo de desempenho na gera\c{c}\~ao da base de bairros lim\'itrofes -- estrutura nova}
-
-  \begin{center}
-    \begin{tabular}{c|c}
-      \hline
-      N\'umero de processos & Desempenho\\
-      \hline
-      1 & 2900 linhas/s\\
-      2 & 4900 linhas/s\\
-      \hline      
-    \end{tabular}
-  \end{center}
-}
-
-\frame
-{
-  \frametitle{Comparativo de desempenho na gera\c{c}\~ao da base de bairros lim\'itrofes}
-
-  \begin{figure}[h]
-    \centering
-    \includegraphics [scale=0.35,]{grafico.png}
+    \includegraphics [scale=0.22]{nova.jpg}
   \end{figure}
 }
 
 \frame
 {
-  \frametitle{Comparativo de desempenho na gera\c{c}\~ao de base de bairro lim\'itrofes}
-
+  \frametitle{Vantagens da nova arquitetura}
   \begin{itemize}[<+->]
-    \item Total de endere\c{c}os obtidos do cadastro geral: 334.851.226 registros.
-    \item Tempo estimado para processamento na estrutura original: 175,2 horas (7,3 dias).
-    \item Tempo para processamento na estrutura nova: 15 horas (0,6 dia).
+  \item Contingência
+  \item Melhor utilização das máquinas
+  \item Virtualização
   \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Tirando o controle da ALOG}
+  \begin{itemize}[<+->]
+  \item Cada dominio novo, era necessario um chamado na ALOG
+  \item Recorde de 7 dias para se criar um CNAME! (
+  http://retaguarda.jacotei.com.br )
+  \item Havia alterações em nosso ambiente sem prévia autorização
+  \item Load Balancer compartilhado
+  \item Load Balancer controlado pela ALOG
+  \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{JáCotei no controle!}
+  \begin{itemize}[<+->]
+  \item Firewall
+    \begin{itemize}[<+->]
+      \item Maior flexibilidade na administração das máquinas
+      \item Maior facilidade para bloquear spiders
+      \item \textcolor{red}{Reformulação das regras}
+      \item Remoção das VLANS
+      \item \textcolor{red}{Reformular os ips}
+      \item \textcolor{red}{Redundância automática do firewall}
+      \item LoadBalance 
+      \item \textcolor{red}{Redundância automática LoadBalance}
+     % adicionar imagens explicando o problemas de ter muitas vlans
+    \end{itemize}
+  \item DNS
+    \begin{itemize}[<+->]
+      \item Criação de nomes mais rápido/fácil
+      \item \textcolor{red}{Criação de DNS interno}
+    \end{itemize}
+  \item \textcolor{red}{Backup}
+    \begin{itemize}[<+->]
+      \item \textcolor{red}{Só existe o backup da alog ( 48h para restaurar )}
+      \item \textcolor{red}{Precisamos de um backup próprio}
+    \end{itemize}
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Otimização}
+  \begin{itemize}[<+->]
+  \item \textcolor{red}{Recompilar Apache em todas as máquinas}
+  \item \textcolor{red}{Usar Nginx para coisas estáticas ( js/css/imagens )}
+  \item \textcolor{red}{Um Banco XE para cada máquina web}
+  \item \textcolor{red}{Usar Squid como Loadbalancer}
+    \begin{itemize}[<+->]
+      \item Cache estático
+      \item Cache dinamico
+     % adicionar imagens explicando o problemas de ter muitas vlans
+    \end{itemize}
+  \end{itemize}
+}
+
+
+\section{Desenvolvimento}
+\frame
+{
+  \frametitle{Testes}
+  \begin{itemize}[<+->]
+  \item \textcolor{red}{Cobertura de Testes}
+  \item \textcolor{red}{Testes Unitários}
+  \item \textcolor{red}{Testes Funcionais}
+  \item \textcolor{red}{Testes de Carga}
+  \begin{itemize}[<+->]
+  \item Quantos usuários simultâneos o site aguenta?
+  \item Quantos usuários simultâneos 1 máquina web aguenta?
+  \item ...
+  \end{itemize}
+  \end{itemize}
+}
+
+
+\section{Desenvolvimento Spider}
+
+\frame
+{
+  \frametitle{Spider}
+  \begin{itemize}[<+->]
+  \item XML rápido com Java
+  \item HTML continua com Perl
+  \item \textcolor{red}{Banco intermediário} (Atualizar somente quando
+  necessário )
+  \end{itemize}
+}
+
+\section{Desenvolvimento Backoffice}
+
+\frame
+{
+  \frametitle{Backoffice}
+  \begin{itemize}[<+->]
+  \item Relatórios ( Reports )
+  \item Legados - Cold Fusion, Delphi
+  \item Novos Aplicativos em Java 
+  \begin{itemize}[<+->]
+  \item Alarme de Preço
+  \item Prancheta, Aniversário
+  \item Logserver ( faz o log de tudo que é feito no site em Cake )
+  \item Download de imagens
+  \end{itemize}
+  \item Snapshot
+  \item Relatórios ( Serviço )
+  \end{itemize}
+}
+
+
+\section{Desenvolvimento Site}
+
+\frame
+{
+  \frametitle{Agora em Cake}
+  \begin{itemize}[<+->]
+  \item -XMLNuke +Cake
+  \begin{itemize}[<+->]
+  \item 4 VMs rodando Cake e 1 física
+  \item 4 VMs de Cake, aguenta o trafego do JáCotei
+  \end{itemize}
+  \item Cadastro
+  \item O que precisa ser feito?
+  \begin{enumerate}
+  \item \textcolor{red}{Banners Openx via JavaScript}
+  \item \textcolor{red}{Sistema de Banners por categoria}
+  \item \textcolor{red}{Alterações no Admin ( xmlvitrine, upload de logomarca
+  )}
+  \item \textcolor{red}{Promoções ( ... ainda em Zend )}
+  \item \textcolor{red}{Hotsite em Cake}
+  \item \textcolor{red}{Encapsulamentos em Cake}
+  \end{enumerate}
+  \end{itemize}
+}
+
+\frame
+{
+    \frametitle{Longo prazo}
+    \begin{itemize}[<+->]
+    \item API JáCotei
+    \item Lucene ( Sistema de RI )
+    \item Subistituir Oracle por PostgreSQL
+    \item Usar algum meta-filesystem ( Hadoop, Hyperbase e afins )
+    \end{itemize}
 }
 
 \end{document}
