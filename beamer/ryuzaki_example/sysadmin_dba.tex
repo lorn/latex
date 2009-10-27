@@ -7,12 +7,37 @@
 \usepackage{graphicx}
 \usepackage[brazil]{babel}
 \usepackage[latin1]{inputenc}
-
+\usepackage{listings,color,textcomp}
+%\definecolor{listinggray}{gray}{0.3}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+	backgroundcolor=\color{white},
+	tabsize=4,
+	rulecolor=,
+	language=Perl,
+    basicstyle=\scriptsize,
+    upquote=true,
+    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=shadowbox,
+    showtabs=false,
+    showspaces=false,
+    numbers=left,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
 \logo{\includegraphics[scale=0.3]{yapc.png}}
 %\logo{YAPC::Brasil::2009}
 
-\title{Perl para \textit{Sysadmins} e \textit{DBA''s}}
-\author{Lindolfo Lorn Rodrigues}
+\title{Perl para \textit{Sysadmins} e \textit{DBA's}}
+\author{Lindolfo ''Lorn'' Rodrigues}
 \date{}
 
 \begin{document}
@@ -29,10 +54,10 @@
 
 \frame 
 {
-  \frametitle{Objetivo}
-
+  \frametitle{\$ whoami}
+  \lstinputlisting{foo.pl}
   \begin{itemize}[<+->]
-  \item Mostrar o que já foi feito em \textit{Infra} e \textit{Dev} 
+  \item feito em \textit{Infra} e \textit{Dev} 
     
   \item ...e o que ainda precisa ser feito
   \item Cores 
@@ -41,9 +66,28 @@
     \item \textcolor{red}{Vermelho}, o que ainda precisa ser feito
   \end{itemize}
   \end{itemize}
+
 }
 
-\section{Agenda}
+
+\frame 
+{
+  \frametitle{Agenda}
+
+  \begin{itemize}[<+->]
+  \item feito em \textit{Infra} e \textit{Dev} 
+    
+  \item ...e o que ainda precisa ser feito
+  \item Cores 
+  \begin{itemize}[<+->]
+    \item Preto, o que já foi feito
+    \item \textcolor{red}{Vermelho}, o que ainda precisa ser feito
+  \end{itemize}
+  \end{itemize}
+
+}
+
+\section{Pré-requisitos}
 
 \frame
 {
