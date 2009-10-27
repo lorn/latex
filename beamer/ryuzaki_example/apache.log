@@ -1,0 +1,4 @@
+38.98.120.84 - - [27/Oct/2009:11:06:27 -0200] "GET /bola-p-frescobol-speedo.html?ordenarpor=3 HTTP/1.1" 200 20303 "-" "ShopWiki/1.0 ( +http://www.shopwiki.com/wiki/Help:Bot)"
+38.98.120.84 - - [27/Oct/2009:11:06:28 -0200] "GET ?ordenarpor=3 HTTP/1.1" 200 64587 "-" "ShopWiki/1.0 ( +http://www.shopwiki.com/wiki/Help:Bot)"
+38.98.120.84 - - [27/Oct/2009:11:06:29 -0200] "GET /bola?ordenarpor=3 HTTP/1.1" 404 3029 "-" "ShopWiki/1.0 ( +http://www.shopwiki.com/wiki/Help:Bot)"
+

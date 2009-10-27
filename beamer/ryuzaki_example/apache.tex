@@ -1,0 +1,29 @@
+\documentclass{memoir}
+\usepackage{listings,color,textcomp}
+%\definecolor{listinggray}{gray}{0.3}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+    basicstyle={\small\small},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=shadowbox,
+}
+
+%\lstset{language=Perl}
+%\lstset{commentstyle=\textit}
+%\lstset{frame=shadowbox, rulesepcolor=\color{gray}}
+\begin{document}
+\lstinputlisting{apache.log}
+%%\begin{lstlisting}[numbers=left]
+%%  my $url =
+%%       'http://192.168.0.7:8080/POG/getINDI.jsp?zarefno=a1.';
+%%  use LWP::Simple;
+%%  my $content = get $url;
+%%  die "Couldn't get $url" unless defined $content;
+%%  print $content;
+%%  print "\n";
+%%  print "Length " + length($content)
+
+%%\end{lstlisting}
+\end{document}
+
