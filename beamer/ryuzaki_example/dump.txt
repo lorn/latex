@@ -1,0 +1,6 @@
+$VAR1 = {
+          'jeremias' => 27,
+          'arthur_dent' => 42,
+          'raul_seixas' => -10000
+        };
+

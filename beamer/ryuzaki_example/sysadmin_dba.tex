@@ -73,9 +73,9 @@
   \begin{itemize}[<+->]
   \item \textit{Sysadmin}  
   \begin{itemize}[<+->]
+    \item One-liners
     \item Parsers de log
     \item Automatizações
-    \item Comparações awk, sed, shell script
   \end{itemize}
   \end{itemize}
   \begin{itemize}[<+->]
@@ -83,202 +83,225 @@
   \begin{itemize}[<+->]
     \item ETL
     \item Data Cleaning
-    \item ...
   \end{itemize}
   \end{itemize}
+
+}
+
+
+\section{Sysadmin}
+
+
+\frame
+{
+  \frametitle{One-liners}
+  \begin{itemize}[<+->]
+    \item Perl na linha de comando
+    \item Lembra muito sed/awk, com todo o poder da PCRE
+  	\begin{itemize}[<+->]
+   	 \item sed: sed -i.bck -e 's/foo/bar/g' arquivo.txt
+   	 \item perl: perl -i.bck -npe 's/foo/bar/g' arquivo.txt
+  	\end{itemize}
+  	\begin{itemize}[<+->]
+   	 \item awk: awk '\{print \$1;\}' arquivo.txt
+   	 \item perl: perl -npe 'print \$F[0]' arquivo.txt
+  	\end{itemize}
+	\item Perl = Shell Script + awk + sed + ... + CPAN! \\o/
+  \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{One-liners}
+
+  \begin{itemize}[<+->]
+    \item find /var/www -iname "*.html" -exec perl -i.bck -npe 's/foo/bar/g' '{}' \;
+	\item perl -MDBD::mysql -e 'DBD::mysql->connect('dbname=yapc;Host=192.168.1.2', 'root', 'yapc2009')
+  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{One-liners}
+  \begin{itemize}[<+->]
+    \item dicas.txt ( canivete suiço one-liners )
+	\item App::Rad!
+  \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{One-liners}
+  \lstinputlisting{rad.pl}
+}
+
+
+\frame
+{
+  \frametitle{One-liners}
+  \begin{itemize}[<+->]
+  	\item \$ perl dicas.pl include 'arruma\_string' -i.bck -npe 's/foo/bar/g' arquivo.txt
+  	\item \$ perl dicas.pl 
+	\lstinputlisting{rad.txt}
+	\item \$ perl dicas.pl arruma\_string outro\_arquivo.txt
+  \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{One-liners}
+  \begin{figure}[h]
+    \centering
+    \includegraphics [scale=0.28]{perl_xkcd.png}
+  \end{figure}
+}
+
+
+\frame
+{
+  \frametitle{Parsers}
+  \begin{itemize}[<+->]
+  \item Como mandar o log do Apache para o Syslog ( tutorial no ultimo slide ) 
+  \item PABX
+  \begin{itemize}[<+->]
+  	\item Usar Spreadsheet::Write
+	\item Customizar com cores, gerentes/chefes adoram cores
+  \end{itemize}
+  \item maillog
+  \end{itemize}
+}
+
+\frame 
+{
+  \frametitle{Pré-requisitos}
+  Hash tables, o que são e como pode ser usada?
+  \frametitle{Pré-requisitos}
+  \lstinputlisting{hash.pl}
 
 }
 
 \frame 
 {
   \frametitle{Pré-requisitos}
-  \lstinputlisting{hash.pl}
-
+  Estrutura de um hash:
+  \lstinputlisting{dump.txt}
 }
 
-\section{Sysadmin}
 
 \frame
 {
-  \frametitle{Parsers}
-  \begin{itemize}[<+->]
-  \item Mandando o log do Apache para o Syslog ( tutorial no ultimo slide ) 
-  \item svn update, não funcionava
-  \item Site e Backoffice, totalmente desincronizado com o repositório
-  \item Não era feito Branch, não era feito tag... 
-  \item Git!
-  \begin{itemize}[<+->]
-  \item Distribuído
-  \item Branchs mais faceis
-  \item Uso de tags para o site
-  \item gitweb - http://192.168.0.178/gitweb/
-  \item Site sincronizado
-  \item \textcolor{red}{Backoffice ainda não}
-  \end{itemize}
-  \end{itemize}
+  \frametitle{Pega ''spider''}
+  Pegando o ''invasor'' do seu site
+  \lstinputlisting{conta_acessos.pl}
 }
 
 \frame
 {
-  \frametitle{Sysadmin}
-  \begin{itemize}[<+->]
-  \item \textcolor{red}{Samba para controlar os usuários}
-  \item \textcolor{red}{Domínio - centralização de usuários}
-  \item \textcolor{red}{Um servidor de arquivos, backup somente desse
-  servidor}
-  \end{itemize}
+  \frametitle{Pega ''spider''}
+  \lstinputlisting{acessos.txt}
 }
 
+\frame
+{
+  \frametitle{Achando arquivo duplicados}
+  \lstinputlisting{duplicados.pl}
+}
+
+\frame
+{
+  \frametitle{Achando arquivo duplicados}
+  \lstinputlisting{duplicados2.pl}
+}
+
+
+\frame
+{
+  \frametitle{Achando arquivo duplicados}
+  \lstinputlisting{md5.txt}
+}
+
+\frame
+{
+  \frametitle{Automatizando tarefas}
+  \begin{itemize}[<+->]
+  \item Qualquer programa com opcao de include, pode ser automatizado 
+  \item Apache, Samba, Bind
+  \end{itemize}
+}
 
 \section{DBA}
 
 \frame
 {
-  \frametitle{Estrutura original}
-
-  \begin{figure}[h]
-    \centering
-    %\includegraphics [scale=0.22]{antiga.jpg}
-  \end{figure}
-}
-
-\frame
-{
-  \frametitle{Estrutura nova}
-
-  \begin{figure}[h]
-    \centering
-    %\includegraphics [scale=0.22]{nova.jpg}
-  \end{figure}
-}
-
-\frame
-{
-  \frametitle{Vantagens da nova arquitetura}
+  \frametitle{Extract, transform, loading}
   \begin{itemize}[<+->]
-  \item Contingência
-  \item Melhor utilização das máquinas
-  \item Virtualização
+  \item Nenhuma linguagem carrega dados no banco, mais rapido que o proprio banco
+  \item pg\_copy ( PostgreSQL ) , impdmp ( Oracle ) 
+  \item ..mas você pode modificar o que será carregado antes de usar o proprio banco
+  \item Limpeza de caracteres '?' 
+  \item dupla dinamic ord - chr
+  \begin{itemize}[<+->]
+ 	\item ord: descobre o ''id'' do caracter estranho
+	\item chr: recebe o ''id'' do caracter e retorna o mesmo
+	\item my \$id\_estranho = ord(371); 
+	\item my \$char\_estranho = chr(\$id\_estranho);
+	\item my \$texto\_sujo =~ s/\$char\_estranho//g;
+  \end{itemize}
+  \item Validar os dados de entrada ( CNPJ, CPF, etc )
+  \item Business::BR::CNPJ Business::BR::CPF 
   \end{itemize}
 }
 
 
 \frame
 {
-  \frametitle{Tirando o controle da ALOG}
+  \frametitle{Extract, transform, loading}
   \begin{itemize}[<+->]
-  \item Cada dominio novo, era necessario um chamado na ALOG
-  \item Recorde de 7 dias para se criar um CNAME! (
-  http://retaguarda.jacotei.com.br )
-  \item Havia alterações em nosso ambiente sem prévia autorização
-  \item Load Balancer compartilhado
-  \item Load Balancer controlado pela ALOG
-  \end{itemize}
-}
-
-
-\frame
-{
-  \frametitle{JáCotei no controle!}
-  \begin{itemize}[<+->]
-  \item Firewall
-    \begin{itemize}[<+->]
-      \item Maior flexibilidade na administração das máquinas
-      \item Maior facilidade para bloquear spiders
-      \item \textcolor{red}{Reformulação das regras}
-      \item Remoção das VLANS
-      \item \textcolor{red}{Reformular os ips}
-      \item \textcolor{red}{Redundância automática do firewall}
-      \item LoadBalance 
-      \item \textcolor{red}{Redundância automática LoadBalance}
-     % adicionar imagens explicando o problemas de ter muitas vlans
-    \end{itemize}
-  \item DNS
-    \begin{itemize}[<+->]
-      \item Criação de nomes mais rápido/fácil
-      \item \textcolor{red}{Criação de DNS interno}
-    \end{itemize}
-  \item \textcolor{red}{Backup}
-    \begin{itemize}[<+->]
-      \item \textcolor{red}{Só existe o backup da alog ( 48h para restaurar )}
-      \item \textcolor{red}{Precisamos de um backup próprio}
-    \end{itemize}
+  \item Spreadsheet::Write também funciona bem com SELECT
+  \item ... ou seja, não precisa gerar um .csv e carregar no seu ''Excel''
+  %\item SELECT to XLS, ou como deixar seus chefes mais felizes :)
+  \item ..mas você pode modificar o que será carregado antes de usar o proprio banco
   \end{itemize}
 }
 
 \frame
 {
-  \frametitle{Otimização}
+  \frametitle{Extract, transform, loading}
   \begin{itemize}[<+->]
-  \item \textcolor{red}{Recompilar Apache em todas as máquinas}
-  \item \textcolor{red}{Usar Nginx para coisas estáticas ( js/css/imagens )}
-  \item \textcolor{red}{Um Banco XE para cada máquina web}
-  \item \textcolor{red}{Usar Squid como Loadbalancer}
-    \begin{itemize}[<+->]
-      \item Cache estático
-      \item Cache dinamico
-     % adicionar imagens explicando o problemas de ter muitas vlans
-    \end{itemize}
+  \item Pequel ETL 
   \end{itemize}
 }
 
-
-\section{Desenvolvimento}
 \frame
 {
-  \frametitle{Testes}
+  \frametitle{PL/Perl - PL/PerlU}
   \begin{itemize}[<+->]
-  \item \textcolor{red}{Cobertura de Testes}
-  \item \textcolor{red}{Testes Unitários}
-  \item \textcolor{red}{Testes Funcionais}
-  \item \textcolor{red}{Testes de Carga}
-  \begin{itemize}[<+->]
-  \item Quantos usuários simultâneos o site aguenta?
-  \item Quantos usuários simultâneos 1 máquina web aguenta?
-  \item ...
-  \end{itemize}
+  \item Palesta do David Fetter ( http://fetter.org ) 
   \end{itemize}
 }
 
-
-\section{Desenvolvimento Spider}
-
 \frame
 {
-  \frametitle{Spider}
+  \frametitle{Data Cleaning}
   \begin{itemize}[<+->]
-  \item XML rápido com Java
-  \item HTML continua com Perl
-  \item \textcolor{red}{Banco intermediário} (Atualizar somente quando
-  necessário )
+  \item Text::Levenshtein ( Edit Distance ou Levenshtein Distance )
+  \begin{itemize}[<+->]
+  	\item rato - ralo
+	\item rodar - rodo
+  \end{itemize}
+  \item Algorithm::LCS
+  \item Algoritmo usado no diff de codigos
   \end{itemize}
 }
 
-\section{Desenvolvimento Backoffice}
+\section{Considerações finais}
 
 \frame
 {
-  \frametitle{Backoffice}
-  \begin{itemize}[<+->]
-  \item Relatórios ( Reports )
-  \item Legados - Cold Fusion, Delphi
-  \item Novos Aplicativos em Java 
-  \begin{itemize}[<+->]
-  \item Alarme de Preço
-  \item Prancheta, Aniversário
-  \item Logserver ( faz o log de tudo que é feito no site em Cake )
-  \item Download de imagens
-  \end{itemize}
-  \item Snapshot
-  \item Relatórios ( Serviço )
-  \end{itemize}
-}
-
-
-\section{Bibliografia e coisas interessantes}
-
-\frame
-{
+	\frametitle{Bibliografia e coisas interessantes}
     \href{http://www.ibm.com/developerworks/linux/library/l-punix.html}{Cultured
     Perl: Automating UNIX system administration with Perl}
 
@@ -287,7 +310,22 @@
 
     \href{http://www.oreillynet.com/pub/a/sysadmin/2006/10/12/httpd-syslog.html}{Sending
     Apache httpd Logs to Syslog}
+
+    \href{http://www.lornlab.org/palestra\_yapc2009}{http://www.lornlab.org/
+    palestra\_yapc2009/}
 }
+
+
+\frame
+{
+  \frametitle{Obrigado}
+  \begin{itemize}[<+->]
+  \item Duvidas?
+  \item lorn@lornlab.org
+  \end{itemize}
+}
+
+
 
 
 \end{document}

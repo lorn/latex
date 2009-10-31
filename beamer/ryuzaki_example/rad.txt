@@ -1,0 +1,6 @@
+Usage: dicas.pl command [arguments]
+
+Available Commands:
+    arruma_string	
+    help         	show syntax and available commands
+    include      	include one-liner as a command

@@ -1,0 +1,91 @@
+#!/usr/bin/perl
+
+=head1 NAME
+
+    highlighter
+    
+=head1 DESCRIPTION
+
+    This program can be used to highlight words from STDIN, so you
+    can see all the output and still easily notice the highlighted
+    parts.
+    
+    See "highlighter -h" for more information
+  
+=head1 AUTHOR
+
+    Renan Rangel <rvr777@gmail.com>
+
+=head1 COPYRIGHT 
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    
+=cut
+
+use strict;
+
+die <DATA>
+  unless scalar @ARGV;
+  
+our $VERSION = '0.1';
+
+# some colors codes
+my @color = (
+   "[1m[31m",  # bold red
+   "[2m[34m",  # dark blue
+   "[1m[32m",  # bold green
+   "[2m[35m",  # dark magenta
+   "[2m[33m",  # dark yellow
+);
+my $reset = "[0m";
+
+my ($c, @p, %option) = 0;
+
+# look for options and patterns
+foreach (@ARGV) {
+  if (/^-(.+)$/) {
+    $1 eq 'h' && do { print <DATA>; exit(0); };
+    $1 eq 'i' && do { $option{i} = 1; next; };
+    $1 eq 'v' && do { print "highlighter $VERSION\nAuthor: Renan Rangel <rvr777\@gmail.com>\n"; exit(0) };
+  }
+  push @p, [$_,$color[$c++]];
+  $c = 0 if $c > $#color;
+}
+
+# search and replace the pattern with the colored text
+my $found = 0;
+while (my $line = <STDIN>) {
+  foreach (@p) {
+    my ($pattern, $color) = @{$_};
+    if ($option{i}) {
+      $line =~ s/($pattern)/$color . $1 . $reset/gei && $found++;
+    } else {
+      $line =~ s/($pattern)/$color . $1 . $reset/ge && $found++;
+    }
+  }
+  print $line;
+}
+
+exit($found ? 0 : 1);
+
+__DATA__
+Usage: 
+  tail -f /var/log/apache2/access.log | highlighter Firefox MSIE Opera Safari
+  highlighter kernel postfix named < /var/log/syslog
+  cat file | highlighter pattern1 pattern2 pattern3 pattern4 pattern5
+  
+Options:
+  -h = Print help message
+  -i = Case insensitive
+  -v = Show version

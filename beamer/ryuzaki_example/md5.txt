@@ -1,0 +1,15 @@
+$VAR1 = {
+          '4b1a785a1dd6db7b5e4f86c7e56c2d1d' =>
+		  [
+           '/Users/lorn/foo/arquivo2.txt',
+           '/Users/lorn/foo/arquivo23.txt'
+          ],
+
+          '3789fa4898d7b7f1513c8ad3965c3f9a' => 
+		  [
+           '/Users/lorn/foo/arquivo1.txt',
+           '/Users/lorn/foo/arquivo11.txt',
+           '/Users/lorn/foo/tmp/arquivo42.txt'
+          ]
+        };
+

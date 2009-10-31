@@ -1,0 +1,2 @@
+find /var/www -iname "*.html" -exec perl -i.bck -npe 's/foo/bar/g' '{}' \;
+
